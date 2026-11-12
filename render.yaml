@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: nexplay-whatsapp
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    autoDeploy: true
+    healthCheckPath: /api/diagnostico
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: WPP_AUTH_DIR
+        value: /var/data/auth
+      - key: AGENTE_URL
+        value: https://xhu56j4zkwooh8hq9hy5.helloreaddy.com/functions/v1/wpp-agente
+      - key: GUARDIAO_URL
+        value: https://xhu56j4zkwooh8hq9hy5.helloreaddy.com/functions/v1/trial-guard
+      - key: GUARDIAO_KEY
+        value: sb_publishable_L54PFnvNTYIzOjXh8UbgpxFaL6mvTZvy
+      - key: GUARDIAO_MINUTOS
+        value: 5
+    disk:
+      name: dados-whatsapp
+      mountPath: /var/data
+      sizeGB: 1
